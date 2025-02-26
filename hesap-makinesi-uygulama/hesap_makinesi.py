@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                             QHBoxLayout, QPushButton, QLineEdit, QGridLayout,
                             QMenuBar, QMenu, QAction)
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QIcon
+import ctypes
 
 class HesapMakinesi(QMainWindow):
     def __init__(self):
@@ -11,6 +12,18 @@ class HesapMakinesi(QMainWindow):
         self.tema = "acik"  # Varsayılan tema
         self.setWindowTitle("Hesap Makinesi")
         self.setFixedSize(300, 450)  # Sabit pencere boyutu
+        
+        # İkon ayarla
+        self.setWindowIcon(QIcon('calculator.ico'))
+        
+        # Windows koyu tema ayarı
+        if self.tema == "koyu":
+            ctypes.windll.dwmapi.DwmSetWindowAttribute(
+                int(self.winId()), 
+                20, 
+                ctypes.byref(ctypes.c_int(2)), 
+                ctypes.sizeof(ctypes.c_int)
+            )
         
         # Menü bar oluşturma
         menubar = self.menuBar()
@@ -86,6 +99,13 @@ class HesapMakinesi(QMainWindow):
     def tema_degistir(self, tema):
         self.tema = tema
         if tema == "acik":
+            # Açık tema için pencere başlığını sıfırla
+            ctypes.windll.dwmapi.DwmSetWindowAttribute(
+                int(self.winId()), 
+                20, 
+                ctypes.byref(ctypes.c_int(0)), 
+                ctypes.sizeof(ctypes.c_int)
+            )
             self.setStyleSheet("""
                 QMainWindow {
                     background-color: #f5f6fa;
@@ -151,6 +171,13 @@ class HesapMakinesi(QMainWindow):
                 }
             """)
         else:  # koyu tema
+            # Koyu tema için pencere başlığını ayarla
+            ctypes.windll.dwmapi.DwmSetWindowAttribute(
+                int(self.winId()), 
+                20, 
+                ctypes.byref(ctypes.c_int(2)), 
+                ctypes.sizeof(ctypes.c_int)
+            )
             self.setStyleSheet("""
                 QMainWindow {
                     background-color: #2f3542;
