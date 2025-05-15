@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Soru Bankası</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="videoLabel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuIslem">
+    <property name="title">
+     <string>İşlem</string>
+    </property>
+    <addaction name="actionYeniSoruEkle"/>
+    <addaction name="actionSoruSec"/>
+   </widget>
+   <addaction name="menuIslem"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionYeniSoruEkle">
+   <property name="text">
+    <string>Yeni Soru Ekle</string>
+   </property>
+  </action>
+  <action name="actionSoruSec">
+   <property name="text">
+    <string>Soru Seç</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 
